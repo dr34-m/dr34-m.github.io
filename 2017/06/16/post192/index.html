@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Dr34m&#39;s Blog">
 <meta property="og:description" content="搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像一、安装Nginx1.使用 yum 安装 Nginx：yum install nginx -y 2.修改/etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的示例">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-01T15:36:05.443Z">
+<meta property="og:updated_time" content="2017-12-02T09:33:46.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建L(Linux)+N(Nginx)+M(MySQL)+P(PHP)网站环境，并安装Wordpress">
 <meta name="twitter:description" content="搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像一、安装Nginx1.使用 yum 安装 Nginx：yum install nginx -y 2.修改/etc/nginx/conf.d/default.conf去除对 IPv6 地址的监听，可参考下面的示例">
@@ -174,168 +174,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="搭建LNMP环境：以下基于腾讯云镜像CentOS-6-8-64bit，或不适用于其他镜像"><a href="#搭建LNMP环境：以下基于腾讯云镜像CentOS-6-8-64bit，或不适用于其他镜像" class="headerlink" title="搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像"></a>搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像</h3><h3 id="一、安装Nginx"><a href="#一、安装Nginx" class="headerlink" title="一、安装Nginx"></a>一、安装Nginx</h3><h4 id="1-使用-yum-安装-Nginx："><a href="#1-使用-yum-安装-Nginx：" class="headerlink" title="1.使用 yum 安装 Nginx："></a>1.使用 yum 安装 Nginx：</h4><pre><code>yum install nginx -y
-</code></pre><h4 id="2-修改-etc-nginx-conf-d-default-conf"><a href="#2-修改-etc-nginx-conf-d-default-conf" class="headerlink" title="2.修改/etc/nginx/conf.d/default.conf"></a>2.修改/etc/nginx/conf.d/default.conf</h4><p>去除对 IPv6 地址的监听，可参考下面的示例<br><a id="more"></a><br>    server {<br>    listen 80 default_server;</p>
-<pre><code># listen [::]:80 default_server;
-server_name _;
-root /usr/share/nginx/html;
-
-# Load configuration files for the default server block.
-include /etc/nginx/default.d/*.conf;
-
-location / {
-}
-
-error_page 404 /404.html;
-location = /40x.html {
-}
-
-error_page 500 502 503 504 /50x.html;
-location = /50x.html {
-}
-
-}
-</code></pre><h4 id="3-修改完成后，启动-Nginx："><a href="#3-修改完成后，启动-Nginx：" class="headerlink" title="3.修改完成后，启动 Nginx："></a>3.修改完成后，启动 Nginx：</h4><pre><code>nginx
-</code></pre><h4 id="4-将-Nginx-设置为开机自动启动："><a href="#4-将-Nginx-设置为开机自动启动：" class="headerlink" title="4.将 Nginx 设置为开机自动启动："></a>4.将 Nginx 设置为开机自动启动：</h4><pre><code>chkconfig nginx on
-</code></pre><h3 id="二、安装MySQL"><a href="#二、安装MySQL" class="headerlink" title="二、安装MySQL"></a>二、安装MySQL</h3><h4 id="1-使用-yum-安装-MySQL："><a href="#1-使用-yum-安装-MySQL：" class="headerlink" title="1.使用 yum 安装 MySQL："></a>1.使用 yum 安装 MySQL：</h4><pre><code>yum install mysql-server -y
-</code></pre><h4 id="2-安装完成后，启动-MySQL-服务："><a href="#2-安装完成后，启动-MySQL-服务：" class="headerlink" title="2.安装完成后，启动 MySQL 服务："></a>2.安装完成后，启动 MySQL 服务：</h4><pre><code>service mysqld restart
-</code></pre><h4 id="3-设置-MySQL-账户-root-密码："><a href="#3-设置-MySQL-账户-root-密码：" class="headerlink" title="3.设置 MySQL 账户 root 密码："></a>3.设置 MySQL 账户 root 密码：</h4><pre><code>/usr/bin/mysqladmin -u root password &apos;MyPas$word4Word_Press&apos;
-</code></pre><h4 id="4-将-MySQL-设置为开机自动启动："><a href="#4-将-MySQL-设置为开机自动启动：" class="headerlink" title="4.将 MySQL 设置为开机自动启动："></a>4.将 MySQL 设置为开机自动启动：</h4><pre><code>chkconfig mysqld on
-</code></pre><h3 id="三、安装PHP"><a href="#三、安装PHP" class="headerlink" title="三、安装PHP"></a>三、安装PHP</h3><h4 id="1-使用-yum-安装-PHP："><a href="#1-使用-yum-安装-PHP：" class="headerlink" title="1.使用 yum 安装 PHP："></a>1.使用 yum 安装 PHP：</h4><pre><code>yum install php-fpm php-mysql -y
-</code></pre><h4 id="2-安装之后，启动-PHP-FPM-进程："><a href="#2-安装之后，启动-PHP-FPM-进程：" class="headerlink" title="2.安装之后，启动 PHP-FPM 进程："></a>2.安装之后，启动 PHP-FPM 进程：</h4><pre><code>service php-fpm start
-</code></pre><h4 id="3-启动之后，可以使用下面的命令查看-PHP-FPM-进程监听哪个端口"><a href="#3-启动之后，可以使用下面的命令查看-PHP-FPM-进程监听哪个端口" class="headerlink" title="3.启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口"></a>3.启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口</h4><pre><code>netstat -nlpt | grep php-fpm
-</code></pre><h4 id="4-把-PHP-FPM-也设置成开机自动启动："><a href="#4-把-PHP-FPM-也设置成开机自动启动：" class="headerlink" title="4.把 PHP-FPM 也设置成开机自动启动："></a>4.把 PHP-FPM 也设置成开机自动启动：</h4><pre><code>chkconfig php-fpm on
-</code></pre><h3 id="安装wordpress"><a href="#安装wordpress" class="headerlink" title="安装wordpress"></a>安装wordpress</h3><h4 id="1-配置好-LNMP-环境后，继续使用-yum-来安装-WordPress："><a href="#1-配置好-LNMP-环境后，继续使用-yum-来安装-WordPress：" class="headerlink" title="1.配置好 LNMP 环境后，继续使用 yum 来安装 WordPress："></a>1.配置好 LNMP 环境后，继续使用 yum 来安装 WordPress：</h4><pre><code>yum install wordpress -y
-</code></pre><h4 id="2-进入-MySQL："><a href="#2-进入-MySQL：" class="headerlink" title="2.进入 MySQL："></a>2.进入 MySQL：</h4><pre><code>mysql -uroot --password=&apos;MyPas$word4Word_Press&apos;
-</code></pre><h4 id="3-为-WordPress-创建一个数据库："><a href="#3-为-WordPress-创建一个数据库：" class="headerlink" title="3.为 WordPress 创建一个数据库："></a>3.为 WordPress 创建一个数据库：</h4><pre><code>CREATE DATABASE wordpress;
-</code></pre><h4 id="4-MySQL-部分设置完了，我们退出-MySQL-环境："><a href="#4-MySQL-部分设置完了，我们退出-MySQL-环境：" class="headerlink" title="4.MySQL 部分设置完了，我们退出 MySQL 环境："></a>4.MySQL 部分设置完了，我们退出 MySQL 环境：</h4><pre><code>exit
-</code></pre><h4 id="5-把上述的-DB-配置同步到-WordPress-的配置文件中，可参考下面的配置："><a href="#5-把上述的-DB-配置同步到-WordPress-的配置文件中，可参考下面的配置：" class="headerlink" title="5.把上述的 DB 配置同步到 WordPress 的配置文件中，可参考下面的配置："></a>5.把上述的 DB 配置同步到 WordPress 的配置文件中，可参考下面的配置：</h4><pre><code>wp-config.php
-&amp;lt;?php
-/**
-* The base configuration for WordPress
-*
-* The wp-config.php creation script uses this file during the
-* installation. You don&apos;t have to use the web site, you can
-* copy this file to &quot;wp-config.php&quot; and fill in the values.
-*
-* This file contains the following configurations:
-*
-* * MySQL settings
-* * Secret keys
-* * Database table prefix
-* * ABSPATH
-*
-* @link https://codex.wordpress.org/Editing_wp-config.php
-*
-* @package WordPress
-*/
-
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
-define(&apos;DB_NAME&apos;, &apos;wordpress&apos;);
-
-/** MySQL database username */
-define(&apos;DB_USER&apos;, &apos;root&apos;);
-
-/** MySQL database password */
-define(&apos;DB_PASSWORD&apos;, &apos;MyPas$word4Word_Press&apos;);
-
-/** MySQL hostname */
-define(&apos;DB_HOST&apos;, &apos;localhost&apos;);
-
-/** Database Charset to use in creating database tables. */
-define(&apos;DB_CHARSET&apos;, &apos;utf8&apos;);
-
-/** The Database Collate type. Don&apos;t change this if in doubt. */
-define(&apos;DB_COLLATE&apos;, &apos;&apos;);
-
-/**#@+
-* Authentication Unique Keys and Salts.
-*
-* Change these to different unique phrases!
-* You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
-* You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
-*
-* @since 2.6.0
-*/
-define(&apos;AUTH_KEY&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;SECURE_AUTH_KEY&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;LOGGED_IN_KEY&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;NONCE_KEY&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;AUTH_SALT&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;SECURE_AUTH_SALT&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;LOGGED_IN_SALT&apos;, &apos;put your unique phrase here&apos;);
-define(&apos;NONCE_SALT&apos;, &apos;put your unique phrase here&apos;);
-
-/**#@-*/
-
-/**
-* WordPress Database Table prefix.
-*
-* You can have multiple installations in one database if you give each
-* a unique prefix. Only numbers, letters, and underscores please!
-*/
-$table_prefix = &apos;wp_&apos;;
-
-/**
-* See http://make.wordpress.org/core/2013/10/25/the-definitive-guide-to-disabling-auto-updates-in-wordpress-3-7
-*/
-
-/* Disable all file change, as RPM base installation are read-only */
-define(&apos;DISALLOW_FILE_MODS&apos;, true);
-
-/* Disable automatic updater, in case you want to allow
-above FILE_MODS for plugins, themes, ... */
-define(&apos;AUTOMATIC_UPDATER_DISABLED&apos;, true);
-
-/* Core update is always disabled, WP_AUTO_UPDATE_CORE value is ignore */
-
-/**
-* For developers: WordPress debugging mode.
-*
-* Change this to true to enable the display of notices during development.
-* It is strongly recommended that plugin and theme developers use WP_DEBUG
-* in their development environments.
-*
-* For information on other constants that can be used for debugging,
-* visit the Codex.
-*
-* @link https://codex.wordpress.org/Debugging_in_WordPress
-*/
-define(&apos;WP_DEBUG&apos;, false);
-
-/* That&apos;s all, stop editing! Happy blogging. */
-
-/** Absolute path to the WordPress directory. */
-if ( !defined(&apos;ABSPATH&apos;) )
-define(&apos;ABSPATH&apos;, &apos;/usr/share/wordpress&apos;);
-
-/** Sets up WordPress vars and included files. */
-require_once(ABSPATH . &apos;wp-settings.php&apos;);
-</code></pre><h4 id="WordPress-已经安装完毕，我们配置-Nginx-把请求转发给-PHP-FPM-来处理"><a href="#WordPress-已经安装完毕，我们配置-Nginx-把请求转发给-PHP-FPM-来处理" class="headerlink" title="WordPress 已经安装完毕，我们配置 Nginx 把请求转发给 PHP-FPM 来处理"></a>WordPress 已经安装完毕，我们配置 Nginx 把请求转发给 PHP-FPM 来处理</h4><pre><code>首先，重命名默认的配置文件：
-
-cd /etc/nginx/conf.d/
-mv default.conf defaut.conf.bak
-在 /etc/nginx/conf.d 创建 wordpress.conf 配置，参考下面的内容：
-
-wordpress.conf
-server {
-listen 80;
-root /usr/share/wordpress;
-location / {
-index index.php index.html index.htm;
-try_files $uri $uri/ /index.php index.php;
-}
-# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-location ~ .php$ {
-fastcgi_pass 127.0.0.1:9000;
-fastcgi_index index.php;
-fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-include fastcgi_params;
-}
-}
-</code></pre><h4 id="6-配置后，通知-Nginx-进程重新加载："><a href="#6-配置后，通知-Nginx-进程重新加载：" class="headerlink" title="6.配置后，通知 Nginx 进程重新加载："></a>6.配置后，通知 Nginx 进程重新加载：</h4><pre><code>nginx -s reload
-</code></pre><h3 id="至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面"><a href="#至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面" class="headerlink" title="至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面"></a>至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面</h3>
+        <h3 id="搭建LNMP环境：以下基于腾讯云镜像CentOS-6-8-64bit，或不适用于其他镜像"><a href="#搭建LNMP环境：以下基于腾讯云镜像CentOS-6-8-64bit，或不适用于其他镜像" class="headerlink" title="搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像"></a>搭建LNMP环境：以下基于腾讯云镜像CentOS 6.8 64bit，或不适用于其他镜像</h3><h3 id="一、安装Nginx"><a href="#一、安装Nginx" class="headerlink" title="一、安装Nginx"></a>一、安装Nginx</h3><h4 id="1-使用-yum-安装-Nginx："><a href="#1-使用-yum-安装-Nginx：" class="headerlink" title="1.使用 yum 安装 Nginx："></a>1.使用 yum 安装 Nginx：</h4><p>yum install nginx -y</p>
+<h4 id="2-修改-etc-nginx-conf-d-default-conf"><a href="#2-修改-etc-nginx-conf-d-default-conf" class="headerlink" title="2.修改/etc/nginx/conf.d/default.conf"></a>2.修改/etc/nginx/conf.d/default.conf</h4><p>去除对 IPv6 地址的监听，可参考下面的示例<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">listen 80 default_server;</span><br><span class="line">	# listen [::]:80 default_server;</span><br><span class="line">server_name _;</span><br><span class="line">root /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">	# Load configuration files for the default server block.</span><br><span class="line">include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">location / &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">error_page 404 /404.html;</span><br><span class="line">location = /40x.html &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">error_page 500 502 503 504 /50x.html;</span><br><span class="line">location = /50x.html &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-修改完成后，启动-Nginx："><a href="#3-修改完成后，启动-Nginx：" class="headerlink" title="3.修改完成后，启动 Nginx："></a>3.修改完成后，启动 Nginx：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+<h4 id="4-将-Nginx-设置为开机自动启动："><a href="#4-将-Nginx-设置为开机自动启动：" class="headerlink" title="4.将 Nginx 设置为开机自动启动："></a>4.将 Nginx 设置为开机自动启动：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig nginx on</span><br></pre></td></tr></table></figure>
+<h3 id="二、安装MySQL"><a href="#二、安装MySQL" class="headerlink" title="二、安装MySQL"></a>二、安装MySQL</h3><h4 id="1-使用-yum-安装-MySQL："><a href="#1-使用-yum-安装-MySQL：" class="headerlink" title="1.使用 yum 安装 MySQL："></a>1.使用 yum 安装 MySQL：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-server -y</span><br></pre></td></tr></table></figure>
+<h4 id="2-安装完成后，启动-MySQL-服务："><a href="#2-安装完成后，启动-MySQL-服务：" class="headerlink" title="2.安装完成后，启动 MySQL 服务："></a>2.安装完成后，启动 MySQL 服务：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure>
+<h4 id="3-设置-MySQL-账户-root-密码："><a href="#3-设置-MySQL-账户-root-密码：" class="headerlink" title="3.设置 MySQL 账户 root 密码："></a>3.设置 MySQL 账户 root 密码：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/mysqladmin -u root password &apos;MyPas$word4Word_Press&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="4-将-MySQL-设置为开机自动启动："><a href="#4-将-MySQL-设置为开机自动启动：" class="headerlink" title="4.将 MySQL 设置为开机自动启动："></a>4.将 MySQL 设置为开机自动启动：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig mysqld on</span><br></pre></td></tr></table></figure>
+<h3 id="三、安装PHP"><a href="#三、安装PHP" class="headerlink" title="三、安装PHP"></a>三、安装PHP</h3><h4 id="1-使用-yum-安装-PHP："><a href="#1-使用-yum-安装-PHP：" class="headerlink" title="1.使用 yum 安装 PHP："></a>1.使用 yum 安装 PHP：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-fpm php-mysql -y</span><br></pre></td></tr></table></figure>
+<h4 id="2-安装之后，启动-PHP-FPM-进程："><a href="#2-安装之后，启动-PHP-FPM-进程：" class="headerlink" title="2.安装之后，启动 PHP-FPM 进程："></a>2.安装之后，启动 PHP-FPM 进程：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm start</span><br></pre></td></tr></table></figure>
+<h4 id="3-启动之后，可以使用下面的命令查看-PHP-FPM-进程监听哪个端口"><a href="#3-启动之后，可以使用下面的命令查看-PHP-FPM-进程监听哪个端口" class="headerlink" title="3.启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口"></a>3.启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -nlpt | grep php-fpm</span><br></pre></td></tr></table></figure>
+<h4 id="4-把-PHP-FPM-也设置成开机自动启动："><a href="#4-把-PHP-FPM-也设置成开机自动启动：" class="headerlink" title="4.把 PHP-FPM 也设置成开机自动启动："></a>4.把 PHP-FPM 也设置成开机自动启动：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
+<h3 id="安装wordpress"><a href="#安装wordpress" class="headerlink" title="安装wordpress"></a>安装wordpress</h3><h4 id="1-配置好-LNMP-环境后，继续使用-yum-来安装-WordPress："><a href="#1-配置好-LNMP-环境后，继续使用-yum-来安装-WordPress：" class="headerlink" title="1.配置好 LNMP 环境后，继续使用 yum 来安装 WordPress："></a>1.配置好 LNMP 环境后，继续使用 yum 来安装 WordPress：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wordpress -y</span><br></pre></td></tr></table></figure>
+<h4 id="2-进入-MySQL："><a href="#2-进入-MySQL：" class="headerlink" title="2.进入 MySQL："></a>2.进入 MySQL：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot --password=&apos;MyPas$word4Word_Press&apos;</span><br></pre></td></tr></table></figure>
+<h4 id="3-为-WordPress-创建一个数据库："><a href="#3-为-WordPress-创建一个数据库：" class="headerlink" title="3.为 WordPress 创建一个数据库："></a>3.为 WordPress 创建一个数据库：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE wordpress;</span><br></pre></td></tr></table></figure>
+<h4 id="4-MySQL-部分设置完了，我们退出-MySQL-环境："><a href="#4-MySQL-部分设置完了，我们退出-MySQL-环境：" class="headerlink" title="4.MySQL 部分设置完了，我们退出 MySQL 环境："></a>4.MySQL 部分设置完了，我们退出 MySQL 环境：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+<h4 id="5-把上述的-DB-配置同步到-WordPress-的配置文件中，可参考下面的配置："><a href="#5-把上述的-DB-配置同步到-WordPress-的配置文件中，可参考下面的配置：" class="headerlink" title="5.把上述的 DB 配置同步到 WordPress 的配置文件中，可参考下面的配置："></a>5.把上述的 DB 配置同步到 WordPress 的配置文件中，可参考下面的配置：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">wp-config.php</span><br><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line">* The base configuration for WordPress</span><br><span class="line">*</span><br><span class="line">* The wp-config.php creation script uses this file during the</span><br><span class="line">* installation. You don&apos;t have to use the web site, you can</span><br><span class="line">* copy this file to &quot;wp-config.php&quot; and fill in the values.</span><br><span class="line">*</span><br><span class="line">* This file contains the following configurations:</span><br><span class="line">*</span><br><span class="line">* * MySQL settings</span><br><span class="line">* * Secret keys</span><br><span class="line">* * Database table prefix</span><br><span class="line">* * ABSPATH</span><br><span class="line">*</span><br><span class="line">* @link https://codex.wordpress.org/Editing_wp-config.php</span><br><span class="line">*</span><br><span class="line">* @package WordPress</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">// ** MySQL settings - You can get this info from your web host ** //</span><br><span class="line">/** The name of the database for WordPress */</span><br><span class="line">define(&apos;DB_NAME&apos;, &apos;wordpress&apos;);</span><br><span class="line"></span><br><span class="line">/** MySQL database username */</span><br><span class="line">define(&apos;DB_USER&apos;, &apos;root&apos;);</span><br><span class="line"></span><br><span class="line">/** MySQL database password */</span><br><span class="line">define(&apos;DB_PASSWORD&apos;, &apos;MyPas$word4Word_Press&apos;);</span><br><span class="line"></span><br><span class="line">/** MySQL hostname */</span><br><span class="line">define(&apos;DB_HOST&apos;, &apos;localhost&apos;);</span><br><span class="line"></span><br><span class="line">/** Database Charset to use in creating database tables. */</span><br><span class="line">define(&apos;DB_CHARSET&apos;, &apos;utf8&apos;);</span><br><span class="line"></span><br><span class="line">/** The Database Collate type. Don&apos;t change this if in doubt. */</span><br><span class="line">define(&apos;DB_COLLATE&apos;, &apos;&apos;);</span><br><span class="line"></span><br><span class="line">/**#@+</span><br><span class="line">* Authentication Unique Keys and Salts.</span><br><span class="line">*</span><br><span class="line">* Change these to different unique phrases!</span><br><span class="line">* You can generate these using the &#123;@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service&#125;</span><br><span class="line">* You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.</span><br><span class="line">*</span><br><span class="line">* @since 2.6.0</span><br><span class="line">*/</span><br><span class="line">define(&apos;AUTH_KEY&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;SECURE_AUTH_KEY&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;LOGGED_IN_KEY&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;NONCE_KEY&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;AUTH_SALT&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;SECURE_AUTH_SALT&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;LOGGED_IN_SALT&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line">define(&apos;NONCE_SALT&apos;, &apos;put your unique phrase here&apos;);</span><br><span class="line"></span><br><span class="line">/**#@-*/</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* WordPress Database Table prefix.</span><br><span class="line">*</span><br><span class="line">* You can have multiple installations in one database if you give each</span><br><span class="line">* a unique prefix. Only numbers, letters, and underscores please!</span><br><span class="line">*/</span><br><span class="line">$table_prefix = &apos;wp_&apos;;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* See http://make.wordpress.org/core/2013/10/25/the-definitive-guide-to-disabling-auto-updates-in-wordpress-3-7</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">/* Disable all file change, as RPM base installation are read-only */</span><br><span class="line">define(&apos;DISALLOW_FILE_MODS&apos;, true);</span><br><span class="line"></span><br><span class="line">/* Disable automatic updater, in case you want to allow</span><br><span class="line">above FILE_MODS for plugins, themes, ... */</span><br><span class="line">define(&apos;AUTOMATIC_UPDATER_DISABLED&apos;, true);</span><br><span class="line"></span><br><span class="line">/* Core update is always disabled, WP_AUTO_UPDATE_CORE value is ignore */</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">* For developers: WordPress debugging mode.</span><br><span class="line">*</span><br><span class="line">* Change this to true to enable the display of notices during development.</span><br><span class="line">* It is strongly recommended that plugin and theme developers use WP_DEBUG</span><br><span class="line">* in their development environments.</span><br><span class="line">*</span><br><span class="line">* For information on other constants that can be used for debugging,</span><br><span class="line">* visit the Codex.</span><br><span class="line">*</span><br><span class="line">* @link https://codex.wordpress.org/Debugging_in_WordPress</span><br><span class="line">*/</span><br><span class="line">define(&apos;WP_DEBUG&apos;, false);</span><br><span class="line"></span><br><span class="line">/* That&apos;s all, stop editing! Happy blogging. */</span><br><span class="line"></span><br><span class="line">/** Absolute path to the WordPress directory. */</span><br><span class="line">if ( !defined(&apos;ABSPATH&apos;) )</span><br><span class="line">define(&apos;ABSPATH&apos;, &apos;/usr/share/wordpress&apos;);</span><br><span class="line"></span><br><span class="line">/** Sets up WordPress vars and included files. */</span><br><span class="line">require_once(ABSPATH . &apos;wp-settings.php&apos;);</span><br></pre></td></tr></table></figure>
+<h4 id="WordPress-已经安装完毕，我们配置-Nginx-把请求转发给-PHP-FPM-来处理"><a href="#WordPress-已经安装完毕，我们配置-Nginx-把请求转发给-PHP-FPM-来处理" class="headerlink" title="WordPress 已经安装完毕，我们配置 Nginx 把请求转发给 PHP-FPM 来处理"></a>WordPress 已经安装完毕，我们配置 Nginx 把请求转发给 PHP-FPM 来处理</h4><p>首先，重命名默认的配置文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d/</span><br><span class="line">mv default.conf defaut.conf.bak</span><br></pre></td></tr></table></figure></p>
+<p>在 /etc/nginx/conf.d 创建 wordpress.conf 配置，参考下面的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">wordpress.conf</span><br><span class="line">server &#123;</span><br><span class="line">listen 80;</span><br><span class="line">root /usr/share/wordpress;</span><br><span class="line">location / &#123;</span><br><span class="line">index index.php index.html index.htm;</span><br><span class="line">try_files $uri $uri/ /index.php index.php;</span><br><span class="line">&#125;</span><br><span class="line">	# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span><br><span class="line">location ~ .php$ &#123;</span><br><span class="line">fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">fastcgi_index index.php;</span><br><span class="line">fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;</span><br><span class="line">include fastcgi_params;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="6-配置后，通知-Nginx-进程重新加载："><a href="#6-配置后，通知-Nginx-进程重新加载：" class="headerlink" title="6.配置后，通知 Nginx 进程重新加载："></a>6.配置后，通知 Nginx 进程重新加载：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<h3 id="至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面"><a href="#至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面" class="headerlink" title="至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面"></a>至此大功告成，通过浏览器访问服务器IP地址即可打开Wordpress安装页面</h3>
       
 
       
