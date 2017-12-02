@@ -16,7 +16,7 @@
 <meta property="og:description" content="下载中文汉化版 安装方法已经安装成功平台，更新代码 点击上方链接下载并解压出lang_zh-cn.php 上传到服务器根目录开始的">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://ctftool-1252906577.costj.myqcloud.com/img/pay.jpg">
-<meta property="og:updated_time" content="2017-12-01T15:36:10.653Z">
+<meta property="og:updated_time" content="2017-12-02T09:09:51.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FBCTF汉化简体中文免费下载，FBCTF更新缓存代码">
 <meta name="twitter:description" content="下载中文汉化版 安装方法已经安装成功平台，更新代码 点击上方链接下载并解压出lang_zh-cn.php 上传到服务器根目录开始的">
@@ -180,19 +180,19 @@
 <h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><h3 id="已经安装成功平台，更新代码"><a href="#已经安装成功平台，更新代码" class="headerlink" title="已经安装成功平台，更新代码"></a>已经安装成功平台，更新代码</h3><ol>
 <li>点击上方链接下载并解压出lang_zh-cn.php</li>
 <li>上传到服务器根目录开始的<a id="more"></a>
-/var/www/fbctf/src/language/`<br>目录下</li>
-<li><p>重新编译(有人称之为更新缓存)</p>
-<pre>`sudo rm /var/cache/hhvm/hhvm.hhbc
-sudo hhvm-repo-mode enable "/var/www/fbctf"
-sudo chown www-data:www-data /var/cache/hhvm/hhvm.hhbc
-sudo service hhvm start
-sudo service nginx restart`</pre>
-
-<h3 id="首次安装"><a href="#首次安装" class="headerlink" title="首次安装"></a>首次安装</h3><p>**1.  在从github下载源码到服务器之后，开始安装FBCTF之前，点击上边链接下载并解压出lang_zh-cn.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/var/www/fbctf/src/language/</span><br></pre></td></tr></table></figure>
 </li>
-<li>放到你下载的<pre>`fbctf/src/language/<br>目录下，之后安装FBCTF<br><strong>其他说明：因为“lang_zh-cn.php”和“lang_zh-tw.php”在后台管理中都显示为“中文/中文”，但是有一个简体有一个繁体，会造成不必要的麻烦，为避免这种情况，不需要繁体中文的用户可以删掉“lang_zh-tw.php”</strong></pre></li>
 </ol>
-<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p><strong>汉化是一项枯燥而辛苦的工作，希望大家打赏来支持我，谢谢！您的支持是我最大的动力！</strong></p>
+<p>目录下</p>
+<ol>
+<li>重新编译(有人称之为更新缓存)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo hhvm-repo-mode enable &quot;/var/www/fbctf&quot;</span><br><span class="line">sudo chown www-data:www-data /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo service hhvm start</span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="首次安装"><a href="#首次安装" class="headerlink" title="首次安装"></a>首次安装</h3><ol>
+<li>在从github下载源码到服务器之后，开始安装FBCTF之前，点击上边链接下载并解压出lang_zh-cn.php</li>
+<li>放到你下载的<code>fbctf/src/language/</code><br>目录下，之后安装FBCTF<br>其他说明：因为“lang_zh-cn.php”和“lang_zh-tw.php”在后台管理中都显示为“中文/中文”，但是有一个简体有一个繁体，会造成不必要的麻烦，为避免这种情况，不需要繁体中文的用户可以删掉“lang_zh-tw.php”</li>
+</ol>
+<h3 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h3><p>汉化是一项枯燥而辛苦的工作，希望大家打赏来支持我，谢谢！您的支持是我最大的动力！</p>
 <p><img src="https://ctftool-1252906577.costj.myqcloud.com/img/pay.jpg" alt=""></p>
 
       
