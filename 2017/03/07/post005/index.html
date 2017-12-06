@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1488444576677_3585_1488444575741.jpg">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1488444591766_7065_1488444590814.jpg">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1488444713598_3604_1488444713356.jpg">
-<meta property="og:updated_time" content="2017-12-02T09:49:11.741Z">
+<meta property="og:updated_time" content="2017-12-06T08:12:26.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个小白的自学建站史（菜鸟建站入门）">
 <meta name="twitter:description" content="接触内网的尝试可能有点特别，我刚开始接触与网站相关是在一个关于DVWA这个漏洞系统的搭建上。那时破晓团队的创始人之一K0r4dji到我们学校来有一个讲座，他讲了很多看起来特别高大上的东西。演讲后有一个面基会，我就去参加并找到他，并表示想学一些网络安全技术，希望他能帮我引进门。他就给我介绍了很多东西，其中就包括了DVWA这个漏洞平台，于是百度安装方法，找到了一篇FreeBuf上的文章：新手指南：手把">
@@ -83,6 +83,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+				<li><a href="/photos">相册</a></li>
 	        
 			</ul>
 		</nav>
@@ -140,6 +142,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -155,12 +159,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -205,7 +211,9 @@
 <h1 id="建站经验"><a href="#建站经验" class="headerlink" title="建站经验"></a>建站经验</h1><h3 id="备案"><a href="#备案" class="headerlink" title="备案"></a>备案</h3><p>备案对于国内网站来说是必不可少的一个环节，在腾讯云官网首页上就有备案的链接，如图：<br><img src="https://blog-10039692.file.myqcloud.com/1488436460607_8841_1488436459506.jpg" alt=""><br>按照要求一步步备案就好了，这里通常耗时较长，我的第一次备案差不多用了俩月可能还多，备案的过程中域名是不允许有解析的，也就是说，只要你要备案，你的网站必须是关闭的！所以对于有经验的站长来说，一般都是先备案，后建站，不然的话网站运行着好好的突然关了，不知道的人还以为你的网站倒闭了呢！或许有人不信邪，我就不备案咋了？不备案的话刚开始应该是没什么问题的，但使用一段时间之后，国内的服务商就会把你服务器的端口关掉，网站就用不了了，所以记住一句话：要建站，先备案！除非你用的是港服或者外服。</p>
 <h3 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h3><p>在访问例如腾讯云、百度等网站的时候，会在Chrome浏览器的网址栏看到这样一个绿色的小锁<img src="https://blog-10039692.file.myqcloud.com/1488437662385_3300_1488437662130.jpg" alt=""> ，感觉特别好，但是访问我自己的网站却只有一个灰色的感叹号<img src="https://blog-10039692.file.myqcloud.com/1488437772942_1273_1488437772290.jpg" alt="http://dz.gl"> ，于是就想，我的网站能不能也有这样一个绿色小锁呢？又是一番各种姿势百度，知道了这个是https协议，需要有网站安全证书，到百度搜了一番，都好贵，舍不得花钱啊~但是峰回路转，发现腾讯云有免费的SSL证书，在管理中心-左上角云产品-SSL证书管理里边，如图：<br><img src="https://blog-10039692.file.myqcloud.com/1488438092663_448_1488438101157.jpg" alt=""><br>点击申请证书，按提示操作之后就可以拥有自己的证书了，不过，这个证书只支持2级域名<br><img src="https://blog-10039692.file.myqcloud.com/1488438268450_1105_1488438279405.jpg" alt=""><br>之后在找到对应的证书并且在服务器上安装即可，我用的是Apache，所以把对应SSL证书(有三个文件)上传到服务器某目录下（例如我创建了PHPstudy/SSL文件夹并上传到该目录下），按照网上的教程修改配置文件，具体方法如下：</p>
 <ol>
-<li>首先是确认ssl功能是否开启：找到PHPstudy/Apache/conf/httpd.conf这个配置文件中的LoadModule ssl_module modules/mod_ssl.so这句话是否前面有注释符#，如果有的话删掉注释符并保存；<br>在PHPstudy/Apache/conf/httpd.conf中添加这样一句话：Include conf/vhost-ssl.conf 并保存；<br>在PHPstudy/Apache/conf目录下创建vhost-ssl.conf文件，然后编辑（建议使用notepad++编辑，极不推荐记事本）之如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line"> ServerName www.ctftools.com //这里改为你自己的域名，如果只有一个网站可以把这行删掉</span><br><span class="line"> DocumentRoot  &quot;C:\WEB\CTFtools&quot; //这里是你的网站目录</span><br><span class="line"> SSLEngine on</span><br><span class="line"> SSLProtocol  all -SSLv2 -SSLv3</span><br><span class="line"> SSLCipherSuite AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL</span><br><span class="line"> SSLCertificateFile &quot;C:\phpStudy\ssl\downssl\1.crt&quot; //证书公钥，大小为2.01KB左右</span><br><span class="line"> SSLCertificateKeyFile &quot;C:\phpStudy\ssl\downssl\3.key&quot; //证书私钥</span><br><span class="line"> SSLCertificateChainFile &quot;C:\phpStudy\ssl\downssl\2.crt&quot; //证书链，大小为1.88KB左右</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line">//有几个站点就写几个这样的一段代码</span><br><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line"> ServerName www.dr34m.cn</span><br><span class="line"> DocumentRoot &quot;C:\WEB\myhome&quot;</span><br><span class="line"> SSLEngine on</span><br><span class="line"> SSLProtocol  all -SSLv2 -SSLv3</span><br><span class="line"> SSLCipherSuite AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL</span><br><span class="line"> SSLCertificateFile &quot;C:\phpStudy\ssl\homessl\1.crt&quot;</span><br><span class="line"> SSLCertificateKeyFile &quot;C:\phpStudy\ssl\homessl\3.key&quot;</span><br><span class="line"> SSLCertificateChainFile &quot;C:\phpStudy\ssl\homessl\2.crt&quot;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>首先是确认ssl功能是否开启：找到PHPstudy/Apache/conf/httpd.conf这个配置文件中的LoadModule ssl_module modules/mod_ssl.so这句话是否前面有注释符#，如果有的话删掉注释符并保存；<br>在PHPstudy/Apache/conf/httpd.conf中添加这样一句话：Include conf/vhost-ssl.conf 并保存；<br>在PHPstudy/Apache/conf目录下创建vhost-ssl.conf文件，然后编辑（建议使用notepad++编辑，极不推荐记事本）之如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line"> ServerName www.ctftools.com //这里改为你自己的域名，如果只有一个网站可以把这行删掉</span><br><span class="line"> DocumentRoot  &quot;C:\WEB\CTFtools&quot; //这里是你的网站目录</span><br><span class="line"> SSLEngine on</span><br><span class="line"> SSLProtocol  all -SSLv2 -SSLv3</span><br><span class="line"> SSLCipherSuite AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL</span><br><span class="line"> SSLCertificateFile &quot;C:\phpStudy\ssl\downssl\1.crt&quot; //证书公钥，大小为2.01KB左右</span><br><span class="line"> SSLCertificateKeyFile &quot;C:\phpStudy\ssl\downssl\3.key&quot; //证书私钥</span><br><span class="line"> SSLCertificateChainFile &quot;C:\phpStudy\ssl\downssl\2.crt&quot; //证书链，大小为1.88KB左右</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line">//有几个站点就写几个这样的一段代码</span><br><span class="line">&lt;VirtualHost *:443&gt;</span><br><span class="line"> ServerName www.dr34m.cn</span><br><span class="line"> DocumentRoot &quot;C:\WEB\myhome&quot;</span><br><span class="line"> SSLEngine on</span><br><span class="line"> SSLProtocol  all -SSLv2 -SSLv3</span><br><span class="line"> SSLCipherSuite AESGCM:ALL:!DH:!EXPORT:!RC4:+HIGH:!MEDIUM:!LOW:!aNULL:!eNULL</span><br><span class="line"> SSLCertificateFile &quot;C:\phpStudy\ssl\homessl\1.crt&quot;</span><br><span class="line"> SSLCertificateKeyFile &quot;C:\phpStudy\ssl\homessl\3.key&quot;</span><br><span class="line"> SSLCertificateChainFile &quot;C:\phpStudy\ssl\homessl\2.crt&quot;</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>重启phpstudy，然后访问https:// 再加上你的站点，是不是可以访问了？<br><strong>注：</strong>如果遇到重启后无法开启Apache，通常是你的配置文件有问题，要有耐心，慢慢查找配置文件的错误。还有一种可能是你的证书公钥和证书链两个文件反了，颠倒过来即可。</p>
 <h2 id="301重定向"><a href="#301重定向" class="headerlink" title="301重定向"></a>301重定向</h2><p>刚开始是在访问腾讯云的时候，发现无论输入的是<code>qcloud.com</code>，还是<code>www.qcloud.com</code>，或者是<code>http://www.qcloud.com</code>，最后访问的都是<code>https://www.qcloud.com</code>，这个可就挺好玩的了，刚开始以为是做的跳转，在<code>qcloud.com</code>目录下建立一个自动跳转到<code>www.qcloud.com</code>的网页，后来知道是做的301重定向，做301重定向的好处就是对搜索引擎友好。为什么要做301重定向呢？一方面，301重定向可以使例如<code>qcloud.com</code>跳转到<code>www.qcloud.com</code>，这样能增加<code>www.qcloud.com</code>的权重；另一方面，我们之前做的SSL证书用的是443端口，并且网址前缀是https，用301重定向可以使得例如<code>http://www.qcloud.com</code>跳转到<code>https://www.qcoloud.com</code>，没有这步跳转，那我们的SSL证书就白用了，301重定向的办法很多，我用到了其中两种，具体如下：</p>
 <h3 id="php做重定向"><a href="#php做重定向" class="headerlink" title="php做重定向"></a>php做重定向</h3><p>这种是用在例如<code>qcloud.com</code>跳转到<code>www.qcloud.com</code>上的，当然，有些网站的权重是放在没有www的网址上，把有www的跳转到没有www的网址上，也是同样的方法</p>

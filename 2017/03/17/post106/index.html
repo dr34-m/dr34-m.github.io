@@ -16,7 +16,7 @@
 <meta property="og:description" content="下载中文汉化版 安装方法已经安装成功平台，更新代码 点击上方链接下载并解压出lang_zh-cn.php 上传到服务器根目录开始的">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://ctftool-1252906577.costj.myqcloud.com/img/pay.jpg">
-<meta property="og:updated_time" content="2017-12-02T09:09:51.567Z">
+<meta property="og:updated_time" content="2017-12-06T08:17:19.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FBCTF汉化简体中文免费下载，FBCTF更新缓存代码">
 <meta name="twitter:description" content="下载中文汉化版 安装方法已经安装成功平台，更新代码 点击上方链接下载并解压出lang_zh-cn.php 上传到服务器根目录开始的">
@@ -64,6 +64,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+				<li><a href="/photos">相册</a></li>
 	        
 			</ul>
 		</nav>
@@ -121,6 +123,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -136,12 +140,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -185,7 +191,7 @@
 </ol>
 <p>目录下</p>
 <ol>
-<li>重新编译(有人称之为更新缓存)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo hhvm-repo-mode enable &quot;/var/www/fbctf&quot;</span><br><span class="line">sudo chown www-data:www-data /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo service hhvm start</span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+<li>重新编译(有人称之为更新缓存)<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo rm /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo hhvm-repo-mode <span class="built_in">enable</span> <span class="string">"/var/www/fbctf"</span></span><br><span class="line">sudo chown www-data:www-data /var/cache/hhvm/hhvm.hhbc</span><br><span class="line">sudo service hhvm start</span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="首次安装"><a href="#首次安装" class="headerlink" title="首次安装"></a>首次安装</h3><ol>

@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1489038144780_5977_1489038141615.jpg">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1489039931247_5787_1489039928640.jpg">
 <meta property="og:image" content="https://blog-10039692.file.myqcloud.com/1489040354613_3175_1489040351578.jpg">
-<meta property="og:updated_time" content="2017-12-02T09:51:52.359Z">
+<meta property="og:updated_time" content="2017-12-06T08:13:03.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="wordpress发送邮件设置以及常见问题解决">
 <meta name="twitter:description" content="关于wordpress的搭建在我的另一篇文章”一个小白的自学建站史（菜鸟建站入门）“的文末已经有了较为详细的解答，需要的朋友可以参考下。本文主要针对于wordpress的邮件设置，以下所有均在wordpress4.7.3环境下进行。 发送邮件设置开启WP-Mail-SMTP插件wordpress原来的邮件设置是有些鸡肋的，通过main()函数来发送，且不说能不能发送成功，就算发送成功了，一般也很难">
@@ -68,6 +68,8 @@
 				<li><a href="/">主页</a></li>
 	        
 				<li><a href="/tags/随笔/">随笔</a></li>
+	        
+				<li><a href="/photos">相册</a></li>
 	        
 			</ul>
 		</nav>
@@ -125,6 +127,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -140,12 +144,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
 		        
 				</ul>
 			</nav>
@@ -196,12 +202,12 @@
 </ol>
 <h3 id="解决Wordpress重设链接无效问题"><a href="#解决Wordpress重设链接无效问题" class="headerlink" title="解决Wordpress重设链接无效问题"></a>解决Wordpress重设链接无效问题</h3><p>很多朋友在wordpress重设密码时点击邮件中的链接会遇到会遇到重设链接无效的问题，仔细观察会看到链接最后有个”&gt;”，删掉就正常了，这是wordpress共有的BUG，很久以前就有了，不知道为什么现在还存在，但既然存在，那就有解决的办法，具体如下：</p>
 <ol>
-<li>编辑wordpress目录下的wp-login.php，搜索：”rawurlencode($user_login)”，约在332行，将其所在行修改为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message .= network_site_url(&quot;wp-login.php?action=rp&amp;amp;amp;key=$key&amp;amp;amp;login=&quot; . rawurlencode($user_login), &apos;login&apos;);</span><br></pre></td></tr></table></figure>
+<li>编辑wordpress目录下的wp-login.php，搜索：”rawurlencode($user_login)”，约在332行，将其所在行修改为：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message .= network_site_url(<span class="string">"wp-login.php?action=rp&amp;amp;amp;key=$key&amp;amp;amp;login="</span> . rawurlencode($user_login), <span class="string">'login'</span>);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>如图：<br><img src="https://blog-10039692.file.myqcloud.com/1489039931247_5787_1489039928640.jpg" alt=""><br>并保存，其实就是把前面的”&lt;”和后边的”&gt;”删掉；</p>
 <ol>
-<li>打开wordpress目录下的wp-includes/pluggable.php，搜索network_site_url，约在1791行，修改为：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message .= network_site_url(&quot;wp-login.php?action=rp&amp;amp;amp;key=$key&amp;amp;amp;login=&quot; . rawurlencode($user-&amp;gt;user_login), &apos;login&apos;) . &quot;\r\n\r\n&quot;;</span><br></pre></td></tr></table></figure>
+<li>打开wordpress目录下的wp-includes/pluggable.php，搜索network_site_url，约在1791行，修改为：<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$message .= network_site_url(<span class="string">"wp-login.php?action=rp&amp;amp;amp;key=$key&amp;amp;amp;login="</span> . rawurlencode($user-&amp;gt;user_login), <span class="string">'login'</span>) . <span class="string">"\r\n\r\n"</span>;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>如图：<br><img src="https://blog-10039692.file.myqcloud.com/1489040354613_3175_1489040351578.jpg" alt=""><br>并保存，其实还是去掉了那对尖括号。<br>至此，wordpress已经可以发送邮件了，同时也支持了用户的自动注册。</p>
