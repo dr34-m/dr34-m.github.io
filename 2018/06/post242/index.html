@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Dr34m&#39;s Blog">
 <meta property="og:description" content="公共接口公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-06-04T12:27:46.482Z">
+<meta property="og:updated_time" content="2018-06-08T15:56:02.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="海滨校园助手api使用文档">
 <meta name="twitter:description" content="公共接口公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。">
@@ -198,7 +198,7 @@
 <p>将其中的学号和秘钥分别改成对应的学号秘钥即可，授权秘钥只能使用一次，用完即失效</p>
 <p>2.返回数据样式：<br>成功：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">		"id": "1000001",		//用户在本平台的唯一身份码</span><br><span class="line">		"uid": "16853046",		//用户学号</span><br><span class="line">		"uname": "王启航",		//用户姓名</span><br><span class="line">		"speciality": "物联网工程",	//用户所在专业</span><br><span class="line">		"class": "物联网1601"		//用户所在班级</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>失败：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userid_or_safekey_error</span><br></pre></td></tr></table></figure></p>
-<h3 id="专用接口"><a href="#专用接口" class="headerlink" title="专用接口"></a>专用接口</h3><p>公共接口仅面向学校可信组织开放，开发者可以凭借学号、姓名、专业、班级这四个信息之一获取与之相关信息。</p>
+<h3 id="专用接口"><a href="#专用接口" class="headerlink" title="专用接口"></a>专用接口</h3><p>专用接口仅面向学校可信组织开放，开发者可以凭借学号、姓名、专业、班级这四个信息之一获取与之相关信息。</p>
 <p>1.专用接口调用链接为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url?token=专用秘钥&amp;keytype=索引类型&amp;keyword=索引数据</span><br></pre></td></tr></table></figure></p>
 <p>其中url与专用秘钥请联系admin@ctftools.com申请资格，索引类型分为四类，分别是bj(班级)、zy(专业)、uid(学号)、unme(姓名)，索引数据为索引类型对应的数据，例如以下示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">url?token=xxxx&amp;keytype=bj&amp;keyword=物联网1601</span><br><span class="line"></span><br><span class="line">url?token=xxxx&amp;keytype=uid&amp;keyword=16853046</span><br></pre></td></tr></table></figure></p>
 <p>2.返回数据样式：<br>单个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">		&quot;id&quot;: &quot;1000001&quot;,		//用户在本平台的唯一身份码</span><br><span class="line">		&quot;uid&quot;: &quot;16853046&quot;,		//用户学号</span><br><span class="line">		&quot;uname&quot;: &quot;王启航&quot;,		//用户姓名</span><br><span class="line">		&quot;speciality&quot;: &quot;物联网工程&quot;,	//用户所在专业</span><br><span class="line">		&quot;class&quot;: &quot;物联网1601&quot;		//用户所在班级</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
@@ -442,11 +442,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经验</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分享</a>
+                <a href="javascript:void(0)" class="js-tag color3">经验</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,7 +454,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">分享</a>
               </li>
              
               <li class="article-tag-list-item">
