@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Dr34m&#39;s Blog">
 <meta property="og:description" content="公共接口公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-06-08T15:56:02.383Z">
+<meta property="og:updated_time" content="2018-12-20T06:55:50.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="海滨校园助手api使用文档">
 <meta name="twitter:description" content="公共接口公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。">
@@ -194,8 +194,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="公共接口"><a href="#公共接口" class="headerlink" title="公共接口"></a>公共接口</h3><p>公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。<br><a id="more"></a><br>1.公共接口调用链接为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.52hbxy.cn/pubapi?userid=学号&amp;safekey=授权秘钥</span><br></pre></td></tr></table></figure></p>
-<p>将其中的学号和秘钥分别改成对应的学号秘钥即可，授权秘钥只能使用一次，用完即失效</p>
+        <h3 id="公共接口"><a href="#公共接口" class="headerlink" title="公共接口"></a>公共接口</h3><p>公共接口面向所有组织及个人开放，开发者可以凭借用户学号和授权秘钥确认用户身份，以及获取用户姓名班级等信息。<br><a id="more"></a><br>1.公共接口调用链接为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.52hbxy.cn/pubapi?safekey=授权秘钥</span><br></pre></td></tr></table></figure></p>
+<p>将其中的秘钥改成对应的秘钥即可，授权秘钥只能使用一次，用完即失效</p>
 <p>2.返回数据样式：<br>成功：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">	&#123;</span><br><span class="line">		"id": "1000001",		//用户在本平台的唯一身份码</span><br><span class="line">		"uid": "16853046",		//用户学号</span><br><span class="line">		"uname": "王启航",		//用户姓名</span><br><span class="line">		"speciality": "物联网工程",	//用户所在专业</span><br><span class="line">		"class": "物联网1601"		//用户所在班级</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>失败：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userid_or_safekey_error</span><br></pre></td></tr></table></figure></p>
 <h3 id="专用接口"><a href="#专用接口" class="headerlink" title="专用接口"></a>专用接口</h3><p>专用接口仅面向学校可信组织开放，开发者可以凭借学号、姓名、专业、班级这四个信息之一获取与之相关信息。</p>
@@ -446,15 +446,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">经验</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分享</a>
               </li>
              
               <li class="article-tag-list-item">
