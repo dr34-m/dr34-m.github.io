@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=https://dr34m-cn.github.io/">
+    <meta http-equiv="refresh" content="0;url=https://dr34m-cn.github.io{{window.location.pathname}}">
     <title>Redirecting...</title>
 </head>
 <body>
-    <h1>Redirecting to <a href="https://dr34m-cn.github.io/">Dr34m's Blog</a>...</h1>
+    <script>
+        var currentPath = window.location.pathname;
+        var newUrl = 'https://dr34m-cn.github.io' + currentPath;
+        window.location.replace(newUrl);
+    </script>
 </body>
 </html>
